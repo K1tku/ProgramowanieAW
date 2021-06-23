@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project-2</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<main>
+
+    <audio src="sounds/hihat.wav" controls data-sound="hihat"></audio>
+    <audio src="sounds/clap.wav" controls data-sound="clap"></audio>
+    <audio src="sounds/boom.wav" controls data-sound="boom"></audio>
+    <audio src="sounds/kick.wav" controls data-sound="kick"></audio>
+    <audio src="sounds/openhat.wav" controls data-sound="openhat"></audio>
+    <audio src="sounds/ride.wav" controls data-sound="ride"></audio>
+    <audio src="sounds/snare.wav" controls data-sound="snare"></audio>
+    <audio src="sounds/tink.wav" controls data-sound="tink"></audio>
+    <audio src="sounds/tom.wav" controls data-sound="tom"></audio>
+
+    <div id="channels">
+        <div class="channel">
+            <button id="recordChannel1" onclick="startRecording(event,1)">Record</button>
+            <button id="stopChannel1"  onclick="stopRecording(1)" disabled>Stop</button>
+            <button id="playChannel1" onclick="playRecording(1)" disabled>Play</button>
+        </div>
+        <div class="channel">
+            <button id="recordChannel2" onclick="startRecording(event,2)">Record</button>
+            <button id="stopChannel2" onclick="stopRecording(2)" disabled>Stop</button>
+            <button id="playChannel2" onclick="playRecording(2)" disabled>Play</button>
+        </div>
+        <div class="channel">
+            <button id="recordChannel3" onclick="startRecording(event,3)">Record</button>
+            <button id="stopChannel3" onclick="stopRecording(3)" disabled>Stop</button>
+            <button id="playChannel3" onclick="playRecording(3)" disabled>Play</button>
+        </div>
+        <div class="channel">
+            <button id="recordChannel4" onclick="startRecording(event,4)">Record</button>
+            <button id="stopChannel4" onclick="stopRecording(4)" disabled>Stop</button>
+            <button id="playChannel4" onclick="playRecording(4)" disabled>Play</button>
+        </div>
+    </div>
+</main>
+
+
+<script src="index.js"></script>
+</body>
+</html>

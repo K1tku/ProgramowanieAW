@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="index.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Project 1</title>
+</head>
+<body style="background-color: lightblue">
+<div class="content">
+    <div >
+        <label class="inputCount"><b>Number of inputs:</b></label>
+        <input class="inputCount" type="text" id="numberofinputs" min="0" placeholder="Enter a value">
+        <hr>
+        <div id="inputs-container" class="inputs-container">
+        </div>
+        <button id="remove-button" hidden="true">Remove</button>
+    </div>
+
+
+    <div class="aggr">
+        <hr>
+        <label class="aggregate-l">Sum</label>
+        <input class="aggregate-i" type="text" id="sum" readonly>
+        <label class="aggregate-l">Avg</label>
+        <input class="aggregate-i" type="text" id="avg" readonly>
+        <label class="aggregate-l">Min</label>
+        <input class="aggregate-i" type="text" id="min" readonly>
+        <label class="aggregate-l">Max</label>
+        <input class="aggregate-i" type="text" id="max" readonly>
+    </div>
+    <script>var exports = {};</script>
+    <script src="index.js"></script>
+</div>
+</body>
+</html>
