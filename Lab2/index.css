@@ -1,0 +1,41 @@
+body {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+    background-color:gray;
+    font-family: sans-serif;
+
+}
+main{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    padding:50px;
+}
+
+.kanaly{
+    padding: 50px;
+
+}
+
+.kanal{
+
+    width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.kanal-button{
+
+    width: 420px;
+    display: block;
+    height: 600px;
+
+
+
+}

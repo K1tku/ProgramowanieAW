@@ -8,63 +8,57 @@ let snareSound: HTMLAudioElement;
 let tinkSound: HTMLAudioElement;
 let tomSound: HTMLAudioElement;
 
-let recordChannel1 = document.getElementById("recordChannel1") as HTMLButtonElement;
-let stopChannel1 = document.getElementById("stopChannel1") as HTMLButtonElement;
-let playChannel1 = document.getElementById("playChannel1") as HTMLButtonElement;
+let kanal1: KeyPressedEvent[] = [];
+let kanal1nagrywanie: boolean = false;
+let kanal1nagrywanieStart: number;
 
-let recordChannel2 = document.getElementById("recordChannel2") as HTMLButtonElement;
-let stopChannel2 = document.getElementById("stopChannel2") as HTMLButtonElement;
-let playChannel2 = document.getElementById("playChannel2") as HTMLButtonElement;
+let kanal2: KeyPressedEvent[] = [];
+let kanal2nagrywanie: boolean = false;
+let kanal2nagrywanieStart: number;
 
-let recordChannel3 = document.getElementById("recordChannel3") as HTMLButtonElement;
-let stopChannel3 = document.getElementById("stopChannel3") as HTMLButtonElement;
-let playChannel3 = document.getElementById("playChannel3") as HTMLButtonElement;
+let kanal3: KeyPressedEvent[] = [];
+let kanal3nagrywanie: boolean = false;
+let kanal3nagrywanieStart: number;
 
-let recordChannel4 = document.getElementById("recordChannel4") as HTMLButtonElement;
-let stopChannel4 = document.getElementById("stopChannel4") as HTMLButtonElement;
-let playChannel4 = document.getElementById("playChannel4") as HTMLButtonElement;
+let kanal4: KeyPressedEvent[] = [];
+let kanal4nagrywanie: boolean = false;
+let kanal4nagrywanieStart: number;
 
-let channel1tmp: KeyPressedEvent[] = [];
-let channel1recording: boolean = false;
-let channel1recordingStart: number;
-
-let channel1: Channel;
-let channel2: Channel;
-let channel3: Channel;
-let channel4: Channel;
 
 appStart();
 
 function appStart(): void {
-    channel1 = new Channel();
-    channel2 = new Channel();
-    channel3 = new Channel();
-    channel4 = new Channel();
-    Channel1();
+    Kanal1();
     getSounds();
 }
 
 
-function Channel1(): void {
+function Kanal1(): void{
     document.body.addEventListener('keypress', onKeyDown);
-    const btnChannel1Play = document.querySelector('#playChannel1')
-    btnChannel1Play.addEventListener('click', onPlayRecording1)
+    const btnKanal1Play = document.querySelector('#Kanal1')
+    btnKanal1Play.addEventListener('click', onPlayKanal1)
 }
 
-
-/*function onPlayChannel1(): void {
-    channel1tmp.forEach(keyPressedEvent => {
+function onPlayKanal1(): void{
+    kanal1.forEach(keyPressedEvent => {
         setTimeout(() => playSound(keyPressedEvent.key), keyPressedEvent.timestamp)
     });
-}*/
-/*
-function stopRecording(): void {
-    channel1recording = false;
 }
-*/
+
+
+function startRecording(e): void {
+    kanal1 = [];
+    kanal1nagrywanie = true;
+    kanal1nagrywanieStart= e.timeStamp;
+
+}
+
+function stopRecording(): void {
+    kanal1nagrywanie = false;
+}
 
 function play(): void {
-    for (let ch1 of this.channel1) {
+    for (let ch1 of this.channel1){
         playSound(ch1);
     }
 }
@@ -85,55 +79,77 @@ function onKeyDown(ev: KeyboardEvent): void {
     console.log(ev);
     const key = ev.key;
     const time = ev.timeStamp;
-    if (channel1recording) {
-        channel1tmp.push(new KeyPressedEvent(key, time - channel1recordingStart));
+    if (kanal1nagrywanie) {
+        kanal1.push(new KeyPressedEvent(key, time-kanal1nagrywanieStart));
+    }
+    if (kanal2nagrywanie) {
+        kanal2.push(new KeyPressedEvent(key, time-kanal2nagrywanieStart));
+    }
+    if (kanal3nagrywanie) {
+        kanal3.push(new KeyPressedEvent(key, time-kanal3nagrywanieStart));
+    }
+    if (kanal4nagrywanie) {
+        kanal4.push(new KeyPressedEvent(key, time-kanal4nagrywanieStart));
     }
     playSound(key);
-    console.log(channel1tmp);
+    console.log(kanal1);
+
 }
+
+function playRecording(): void {
+
+    this.kanal1.forEach(keyPressedEvent => {
+        setTimeout(() => playSound(keyPressedEvent.key), keyPressedEvent.timestamp)
+    });
+
+}
+
+//muzyka gra na wcisniety klawisz
 
 function playSound(key: string): void {
     switch (key) {
-        case 'a':
+        case 'q':
             hihatSound.currentTime = 0;
             hihatSound.play();
             break;
-        case 's':
+        case 'w':
             clapSound.currentTime = 0;
             clapSound.play();
             break;
-        case 'd':
+        case 'e':
             boomSound.currentTime = 0;
             boomSound.play();
             break;
-        case 'f':
+        case 'r':
             kickSound.currentTime = 0;
             kickSound.play();
             break;
-        case 'g':
+        case 't':
             openhatSound.currentTime = 0;
             openhatSound.play();
             break;
-        case 'h':
+        case 'y':
             rideSound.currentTime = 0;
             rideSound.play();
             break;
-        case 'j':
+        case 'u':
             snareSound.currentTime = 0;
             snareSound.play();
             break;
-        case 'k':
+        case 'i':
             tinkSound.currentTime = 0;
             tinkSound.play();
             break;
-        case 'l':
+        case 'o':
             tomSound.currentTime = 0;
             tomSound.play();
             break;
     }
 }
 
-class KeyPressedEvent {
+//parametr key jako klawisz i timestamp jako czas w ktorym zostal dany klawisz wcisniety
+
+class KeyPressedEvent{
     key: string;
     timestamp: number;
 
@@ -141,129 +157,4 @@ class KeyPressedEvent {
         this.key = key;
         this.timestamp = timestamp;
     }
-}
-
-class Channel {
-
-    keyPressedEvents: KeyPressedEvent[] = [];
-    isRecording: boolean = false;
-    startRecordingTimeStamp: number;
-
-
-    constructor() {
-    }
-
-    startRecording(e, channelNumber): void {
-        this.keyPressedEvents = [];
-        this.isRecording = true;
-        this.startRecordingTimeStamp = e.timeStamp;
-
-        if (channelNumber === 1) {
-            channel1.startRecording(e, 1);
-            recordChannel1.disabled = true;
-            stopChannel1.disabled = false;
-        }
-        if (channelNumber === 2) {
-            channel2.startRecording(e,2 );
-            recordChannel2.disabled = true;
-            stopChannel2.disabled = false;
-        }
-        if (channelNumber === 3) {
-            channel3.startRecording(e,3 );
-            recordChannel3.disabled = true;
-            stopChannel3.disabled = false;
-        }
-        if (channelNumber === 4) {
-            channel4.startRecording(e,4);
-            recordChannel4.disabled = true;
-            stopChannel4.disabled = false;
-        }
-    }
-
-    stopRecording(channelNumber): void {
-        if(channelNumber === 1){
-            this.isRecording = false;
-            recordChannel1.disabled = false;
-            stopChannel1.disabled = true;
-            playChannel1.disabled = false;
-        }
-        if(channelNumber === 2){
-            this.isRecording = false;
-            recordChannel2.disabled = false;
-            stopChannel2.disabled = true;
-            playChannel2.disabled = false;
-        }
-        if(channelNumber === 3){
-            this.isRecording = false;
-            recordChannel3.disabled = false;
-            stopChannel3.disabled = true;
-            playChannel3.disabled = false;
-        }
-        if(channelNumber === 4){
-            this.isRecording = false;
-            recordChannel4.disabled = false;
-            stopChannel4.disabled = true;
-            playChannel4.disabled = false;
-        }
-
-
-    }
-
-    playRecording(channelNumber): void {
-
-
-        if(channelNumber === 1){
-            this.keyPressedEvents.forEach(keyPressedEvent => {
-                setTimeout(() => playSound(keyPressedEvent.key), keyPressedEvent.timestamp)
-            });
-        }
-        if(channelNumber === 2){
-            this.keyPressedEvents.forEach(keyPressedEvent => {
-                setTimeout(() => playSound(keyPressedEvent.key), keyPressedEvent.timestamp)
-            });
-        }
-        if(channelNumber === 3){
-            this.keyPressedEvents.forEach(keyPressedEvent => {
-                setTimeout(() => playSound(keyPressedEvent.key), keyPressedEvent.timestamp)
-            });
-        }
-        if(channelNumber === 4){
-            this.keyPressedEvents.forEach(keyPressedEvent => {
-                setTimeout(() => playSound(keyPressedEvent.key), keyPressedEvent.timestamp)
-            });
-        }
-    }
-
-    onKeyDown(ev: KeyboardEvent, channelNumber): void {
-
-        console.log(ev);
-        const key = ev.key;
-        const time = ev.timeStamp;
-
-        if(channelNumber === 1){
-            if (this.isRecording) {
-                this.keyPressedEvents.push(new KeyPressedEvent(key, time - this.startRecordingTimeStamp));
-            }
-        }
-        if(channelNumber === 2){
-            if (this.isRecording) {
-                this.keyPressedEvents.push(new KeyPressedEvent(key, time - this.startRecordingTimeStamp));
-            }
-        }
-        if(channelNumber === 3){
-            if (this.isRecording) {
-                this.keyPressedEvents.push(new KeyPressedEvent(key, time - this.startRecordingTimeStamp));
-            }
-        }
-        if(channelNumber === 4){
-            if (this.isRecording) {
-                this.keyPressedEvents.push(new KeyPressedEvent(key, time - this.startRecordingTimeStamp));
-            }
-        }
-
-        playSound(key);
-        console.log(this.keyPressedEvents);
-    }
-
-
 }
