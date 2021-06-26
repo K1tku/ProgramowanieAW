@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PogodynkaKlientService } from './pogodynka-klient.service';
+import { Pogoda } from './pogoda';
 
 describe('PogodynkaKlientService', () => {
-  let service: PogodynkaKlientService;
+  let service: Pogoda;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PogodynkaKlientService);
+    service = TestBed.inject(Pogoda);
   });
 
   it('should be created', () => {

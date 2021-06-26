@@ -1,36 +1,17 @@
-<div class="first123">
-<div class="top-bar">
+<div class="center-input">
+      <label>Miasto:</label>
+      <input type="text" [(ngModel)]="nazwaMiasta">
+      <button (click)="zapytaniePogoda()">Dodaj</button>
+    </div>
 
-  <div class="center-input">
-<!--    <img class="weathericon" src="../../assets/icons/weatherimage.png"/>-->
-    <mat-form-field appearance="outline">
-      <mat-label>City:</mat-label>
+    <div class="cities">
 
-      <input matInput type="text" id="city" name="city" [(ngModel)]="cityName">
-    </mat-form-field>
-  </div>
-  <div class="center-button">
-    <button mat-raised-button color="primary" (click)="checkWeather()">Add</button>
-  </div>
+      <div class="city" *ngFor="let weather of miasta">
 
-</div>
-
-
-
-
-
-<div class="first">
-  <div class="cities">
-    <div class="city" *ngFor="let weather of weathers">
-      <div style="text-align: center"><img src="../../assets/icons/{{weather.weatherResponse.weather[0].icon}}@2x.png"/></div>
-      <div class="cities-city"><img class="images" src="../../assets/icons/localization.png"/>{{weather.cityName}}</div>
-      <div class="cities-city"><img class="images"
-                                    src="../../assets/icons/temperature.png"/>{{(weather.weatherResponse.main.temp - 273.15).toFixed(1)}}
-      </div>
-      <div class="cities-city"><img class="images"
-                                    src="../../assets/icons/humidity.png"/>{{weather.weatherResponse.main.humidity}}
+        <div style="text-align: center"><img src="../../assets/icons/{{weather.RootObject.weather[0].icon}}@2x.png"/></div>
+        <div class="cities-city"><img class="images"/>Miasto: {{weather.nazwaMiasta}}</div>
+        <div class="cities-city"><img class="images"/>Temperatura: {{(weather.RootObject.main.temp - 273.15).toFixed(0)}}</div>
+        <div class="cities-city"><img class="images"/>Wilgotność: {{weather.RootObject.main.humidity}}</div>
       </div>
     </div>
-  </div>
-</div>
-</div>
+

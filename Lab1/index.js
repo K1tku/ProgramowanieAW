@@ -1,10 +1,10 @@
-var Project1 = /** @class */ (function () {
-    function Project1() {
+var Lab1 = /** @class */ (function () {
+    function Lab1() {
         this.inputs = [];
         this.selectedInputs = [];
         this.startApp();
     }
-    Project1.prototype.startApp = function () {
+    Lab1.prototype.startApp = function () {
         var _this = this;
         this.numberofInputs = document.querySelector('#numberofinputs');
         this.numberofInputs.addEventListener("change", function () {
@@ -12,7 +12,7 @@ var Project1 = /** @class */ (function () {
         });
         this.getInputs();
     };
-    Project1.prototype.renderInput = function () {
+    Lab1.prototype.renderInput = function () {
         var _this = this;
         this.numberofInputs = document.querySelector('#numberofinputs');
         var value = this.numberofInputs.value;
@@ -90,7 +90,7 @@ var Project1 = /** @class */ (function () {
             _loop_1(i);
         }
     };
-    Project1.prototype.inputValidation = function (inputElementId, inputSpinnerId) {
+    Lab1.prototype.inputValidation = function (inputElementId, inputSpinnerId) {
         var currentInput = document.getElementById(inputElementId);
         var inputSpinner = document.getElementById(inputSpinnerId);
         if (currentInput.value != '' && isNaN(currentInput.value)) {
@@ -100,13 +100,13 @@ var Project1 = /** @class */ (function () {
             inputSpinner.hidden = true;
         }
     };
-    Project1.prototype.getInputs = function () {
+    Lab1.prototype.getInputs = function () {
         this.sumInput = document.querySelector('#sum');
         this.avgInput = document.querySelector('#avg');
         this.minInput = document.querySelector('#min');
         this.maxInput = document.querySelector('#max');
     };
-    Project1.prototype.computeData = function () {
+    Lab1.prototype.computeData = function () {
         var values = [];
         for (var _i = 0, _a = this.inputs; _i < _a.length; _i++) {
             var input = _a[_i];
@@ -121,12 +121,12 @@ var Project1 = /** @class */ (function () {
         var max = Math.max.apply(Math, values);
         this.showStats(sum, avg, min, max);
     };
-    Project1.prototype.showStats = function (sum, avg, min, max) {
+    Lab1.prototype.showStats = function (sum, avg, min, max) {
         this.sumInput.value = sum.toString();
         this.avgInput.value = avg.toString();
         this.minInput.value = min.toString();
         this.maxInput.value = max.toString();
     };
-    return Project1;
+    return Lab1;
 }());
-var project1 = new Project1();
+var project1 = new Lab1();

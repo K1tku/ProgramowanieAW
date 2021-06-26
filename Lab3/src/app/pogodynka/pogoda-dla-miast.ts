@@ -1,13 +1,14 @@
-import {WeatherResponse} from "../service/pogodynka-klient.service";
+import {RootObject} from "./pogoda";
 
 export class PogodaDlaMiast {
 //klasa ktora zapisuje dane lokalikazcje glownie cityName ktore jest zmienne
-  constructor(cityName: string, weatherResponse: WeatherResponse) {
-    this.cityName = cityName;
-    this.weatherResponse = weatherResponse;
+
+  constructor(nazwaMiasta: string, weatherResponse: RootObject) {
+    this.nazwaMiasta = nazwaMiasta;
+    this.RootObject = weatherResponse;
   }
 
-  cityName: string;
-  weatherResponse: WeatherResponse;
+  nazwaMiasta: string;
+  RootObject: RootObject;
 
 }

@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {PogodynkaKlientService, WeatherResponse} from '../service/pogodynka-klient.service';
+import {Pogoda, RootObject} from './pogoda';
 import {PogodaDlaMiast} from "./pogoda-dla-miast";
 
 @Component({
@@ -8,26 +8,27 @@ import {PogodaDlaMiast} from "./pogoda-dla-miast";
   styleUrls: ['./pogodynka.component.css']
 })
 export class PogodynkaComponent implements OnDestroy, OnInit {
+//deklarujesz zmienne
+  nazwaMiasta: string;
+  miasta: PogodaDlaMiast[];
 
-  cityName: string;
-  weathers: PogodaDlaMiast[];
-
-  constructor(private weatherClientService: PogodynkaKlientService) {
-    this.cityName = '';
-    const item = localStorage.getItem('weathers');
+  //
+  constructor(private pogoda: Pogoda) {
+    this.nazwaMiasta = '';
+    const wMiasta = localStorage.getItem('miasta');
     //
-    this.weathers = item === null ? [] : JSON.parse(item);
+    this.miasta = wMiasta === null ? [] : JSON.parse(wMiasta);
   }
-
-  checkWeather(): void {
-    this.weatherClientService.getWeatherForCity(this.cityName)
+//bierze metode pogoda dla miasta
+  zapytaniePogoda(): void {
+    this.pogoda.pogodaDlaMiasta(this.nazwaMiasta)
       .subscribe((response) => {
-        this.weathers.push(new PogodaDlaMiast( this.cityName,response));
+        this.miasta.push(new PogodaDlaMiast( this.nazwaMiasta,response));
       });
   }
  //[aktywuje sie gdy przechodzi sie miedzy Route'mi] Zapisuje do localstorage
   ngOnDestroy(): void {
-    localStorage.setItem('weathers', JSON.stringify(this.weathers));
+    localStorage.setItem('miasta', JSON.stringify(this.miasta));
   }
 
   ngOnInit(): void {

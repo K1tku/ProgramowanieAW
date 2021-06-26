@@ -1,4 +1,4 @@
-class Project1 {
+class Lab1 {
 
     numberofInputs: HTMLInputElement;
 
@@ -162,4 +162,4 @@ class Project1 {
     }
 }
 
-const project1 = new Project1();
+const project1 = new Lab1();
