@@ -6,18 +6,18 @@ var Lab1 = /** @class */ (function () {
     }
     Lab1.prototype.startApp = function () {
         var _this = this;
-        this.numberofInputs = document.querySelector('#numberofinputs');
-        this.numberofInputs.addEventListener("change", function () {
+        this.liczbyWprowadzone = document.querySelector('#numberofinputs');
+        this.liczbyWprowadzone.addEventListener("zmiany", function () {
             _this.renderInput();
         });
         this.getInputs();
     };
     Lab1.prototype.renderInput = function () {
         var _this = this;
-        this.numberofInputs = document.querySelector('#numberofinputs');
-        var value = this.numberofInputs.value;
+        this.liczbyWprowadzone = document.querySelector('#numberofinputs');
+        var value = this.liczbyWprowadzone.value;
         var inputContainer = document.getElementById("inputs-container");
-        var removeButton = document.getElementById('remove-button');
+        var removeButton = document.getElementById('usunprzycisk');
         removeButton.hidden = false;
         removeButton.addEventListener('click', function () {
             removeButton.disabled = true;
@@ -27,9 +27,9 @@ var Lab1 = /** @class */ (function () {
                 inputContainer.removeChild(selectedDiv);
             }
             var selectedCount = _this.selectedInputs.length;
-            var inputCount = Number(_this.numberofInputs.value);
+            var inputCount = Number(_this.liczbyWprowadzone.value);
             inputCount = inputCount - selectedCount;
-            _this.numberofInputs.value = inputCount + '';
+            _this.liczbyWprowadzone.value = inputCount + '';
             _this.selectedInputs = [];
             removeButton.disabled = false;
         });
@@ -58,9 +58,9 @@ var Lab1 = /** @class */ (function () {
             deleteButton.innerText = 'X';
             deleteButton.addEventListener('click', function () {
                 inputContainer.removeChild(inputDiv);
-                var inputCount = Number(_this.numberofInputs.value);
+                var inputCount = Number(_this.liczbyWprowadzone.value);
                 inputCount = inputCount - 1;
-                _this.numberofInputs.value = inputCount + '';
+                _this.liczbyWprowadzone.value = inputCount + '';
             });
             var inputDiv = document.createElement('div');
             var inputDivId = "div" + i;
