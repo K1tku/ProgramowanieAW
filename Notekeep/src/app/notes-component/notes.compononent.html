@@ -12,7 +12,7 @@
     <mat-form-field appearance="fill">
       <mat-label>Opis</mat-label>
       <textarea matInput [(ngModel)]="descriptionModel"></textarea>
-    </mat-form-field>
+    </mat-form-field>-
 
     <mat-form-field appearance="fill">
       <mat-label>Kolor notatki</mat-label>
@@ -24,21 +24,21 @@
     </mat-form-field>
     <div class="create-button">
       <button mat-raised-button color="accent" (click)="createTheNotes()"  id="ok">Dodaj</button>
-      <button class="buttoon"  mat-raised-button color="" (click)="clearLS()">Wyczyść LS</button>
+ <!--     <button class="buttoon"  mat-raised-button color="" (click)="clearLS()">Wyczyść LS</button>-->
     </div>
   </div>
 </div>
 
 <div class="first">
   <div id="notes">
-    <div class="note" *ngFor="let i of thenotes" [id]="i.id" >
+    <div class="note" *ngFor="let i of thenotes" [id]="i.id" [ngStyle]="{backgroundColor:i.color}">
       <mat-card-title disabled> #NoteID: {{ i.id}} </mat-card-title>
       <mat-card-title disabled> {{ i.date}} </mat-card-title>
       <label style="border: 1px solid #d8dbe1">Tytuł</label>
         <mat-card-title class="noteinput"> {{ i.title }} </mat-card-title>
       <label style="border: 1px solid #d8dbe1">Opis</label>
         <mat-card class="noteinput"> {{ i.description }} </mat-card>
-      <button (click)="editNote()">Edytuj</button>
+      <button (click)="editNote(i.id, i.color)">Edytuj</button>
       <button (click)="deleteNote(i.id)" >Usuń</button>
 
       </div>

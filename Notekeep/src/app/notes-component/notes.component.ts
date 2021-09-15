@@ -37,11 +37,14 @@ export class NotesComponent implements OnDestroy, OnInit {
     this.colorModel = 'Red';
 
 
-    const d = new Date();
+    const today = new Date();
+    const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    const dateTime = date+' '+time;
 
     const defaultTheNotes: TheNotes = {
       id: 1,
-      date: d,
+      date: dateTime,
       title: 'Testowy Tytuł',
       description: 'Testowy Opis',
       color: 'Czerwony'
@@ -50,22 +53,24 @@ export class NotesComponent implements OnDestroy, OnInit {
     const ssss = JSON.parse(localStorage.getItem('thenotes'));
     this.thenotes = ssss;
 //pobiera wszystkie noratki z ls :thnotes"
-/*    const getNotes: any = JSON.parse(localStorage.getItem('thenotes'));
-    if (getNotes !== null) {
-      this.thenotes.push(...getNotes);
+    /*    const getNotes: any = JSON.parse(localStorage.getItem('thenotes'));
+        if (getNotes !== null) {
+          this.thenotes.push(...getNotes);
 
 
-    } else {
+        } else {
 
-      localStorage.setItem('thenotes', JSON.stringify([]));
-      window.location.reload();
-    }*/
+          localStorage.setItem('thenotes', JSON.stringify([]));
+          window.location.reload();
+        }*/
   }
-  clearLS(): void {
+
+
+/*  clearLS(): void {
     window.onbeforeunload = () => localStorage.clear();
     window.onbeforeunload = () => localStorage.removeItem('thenotes');
     document.location.reload(true);
-  }
+  }*/
 
 
 
@@ -78,17 +83,17 @@ export class NotesComponent implements OnDestroy, OnInit {
     const filterednotes = JSON.parse(localStorage.getItem('thenotes'));
     this.thenotes = filterednotes;
 
-/*    const filterednotes = JSON.parse(localStorage.getItem('thenotes'));
-    this.thenotes = filterednotes;*/
-/*    let divy = document.querySelectorAll('div');
+    /*    const filterednotes = JSON.parse(localStorage.getItem('thenotes'));
+        this.thenotes = filterednotes;*/
+    /*    let divy = document.querySelectorAll('div');
 
-    for(let i=0;i<divy.length;i++) {
-      divy[i].addEventListener('click', function () {
-        this.id;
-      });
-    }
-    window.onbeforeunload = () => localStorage.removeItem('id');
-    document.location.reload(true);*/
+        for(let i=0;i<divy.length;i++) {
+          divy[i].addEventListener('click', function () {
+            this.id;
+          });
+        }
+        window.onbeforeunload = () => localStorage.removeItem('id');
+        document.location.reload(true);*/
 
   }
 
@@ -96,44 +101,46 @@ export class NotesComponent implements OnDestroy, OnInit {
 
   //
   createTheNotes() {
-    const theId = this.thenotes.length + 1;
-    const d = new Date();
+    const theId: any = this.thenotes.length + 1;
+    const today = new Date();
+    const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    const dateTime = date+' '+time;
     const newTheNotes: TheNotes = {
       id: theId,
-      date: d,
+      date: dateTime,
       title: this.titleModel ,
       description : this.descriptionModel ,
       color : this.colorModel
     };
-/*    const ncolor = document.getElementsByClassName('note') as HTMLCollectionOf<HTMLElement>;
 
-    for (let i = 0; i < ncolor.length; i++) {
-      ncolor[i].style.backgroundColor = this.colorModel;
-
-    }*/
     this.thenotes.push( newTheNotes );
     this.titleModel = this.descriptionModel = this.colorModel = '';
-
+/*    const ncolor = document.getElementById(theId) as HTMLElement;
+    ncolor[theId].style.backgroundColor = this.colorModel;*/
   }
 
 
-  editNote(): void {
-    const elements = document.getElementsByClassName('noteinput') as HTMLCollectionOf<HTMLElement>;
-    for (const el of elements as any) {
-      if (el.disabled === true) {
-        el.disabled = false;
+  editNote(id, color): void {
 
-        for (let i = 0; i < elements.length; i++) {
-          elements[i].style.border = '';
-        }
-      } else {
-        el.disabled = true;
 
-        for (let i = 0; i < elements.length; i++) {
-          elements[i].style.border = 'none';
-        }
-      }
-    }
+    localStorage.setItem(id, color);
+    /*   const elements = document.getElementsByClassName('noteinput') as HTMLCollectionOf<HTMLElement>;
+       for (const el of elements as any) {
+         if (el.disabled === true) {
+           el.disabled = false;
+
+           for (let i = 0; i < elements.length; i++) {
+             elements[i].style.border = '';
+           }
+         } else {
+           el.disabled = true;
+
+           for (let i = 0; i < elements.length; i++) {
+             elements[i].style.border = 'none';
+           }
+         }
+       }*/
   }
 
 
