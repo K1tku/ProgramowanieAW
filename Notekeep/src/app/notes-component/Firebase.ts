@@ -2,6 +2,7 @@ import firebase from "firebase/compat";
 import {firebaseConfig} from "./config";
 import {OnDestroy, OnInit} from "@angular/core";
 
+
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const db = firebaseApp.firestore();
 
@@ -9,9 +10,9 @@ const db = firebaseApp.firestore();
 
   export async function
 
-  addNoteFB(note: any) {
+  addNoteFB(newTheNotes: any) {
 
-    const res = await db.collection('notes').add(note)
+    const res = await db.collection('notes').add(newTheNotes)
   }
 
 export async function
@@ -27,4 +28,6 @@ export async function
 
     const res = await db.collection('notes').doc(id).update(note)
   }
+
+
 

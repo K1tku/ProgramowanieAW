@@ -23,7 +23,7 @@
       </mat-select>
     </mat-form-field>
     <div class="create-button">
-      <button mat-raised-button color="accent" (click)="createTheNotes()" id="ok">Dodaj</button>
+      <button mat-raised-button color="accent" (click)="createTheNotes()"  id="ok">Dodaj</button>
       <button class="buttoon"  mat-raised-button color="" (click)="clearLS()">Wyczyść LS</button>
     </div>
   </div>
@@ -39,7 +39,8 @@
       <label style="border: 1px solid #d8dbe1">Opis</label>
         <mat-card class="noteinput"> {{ i.description }} </mat-card>
       <button (click)="editNote()">Edytuj</button>
-      <button (click)="deleteNote()" [id]="i.id">Usuń</button>
+      <button (click)="deleteNote(i.id)" >Usuń</button>
+
       </div>
     </div>
 </div>

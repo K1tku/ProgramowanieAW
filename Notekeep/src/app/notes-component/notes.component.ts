@@ -32,9 +32,9 @@ export class NotesComponent implements OnDestroy, OnInit {
 
 
   constructor() {
-    this.titleModel = '';
-    this.descriptionModel = '';
-    this.colorModel = '';
+    this.titleModel = 'TestTitle';
+    this.descriptionModel = 'TestDesc';
+    this.colorModel = 'Red';
 
 
     const d = new Date();
@@ -47,16 +47,19 @@ export class NotesComponent implements OnDestroy, OnInit {
       color: 'Czerwony'
     };
     this.thenotes = [ defaultTheNotes ];
-
+    const ssss = JSON.parse(localStorage.getItem('thenotes'));
+    this.thenotes = ssss;
 //pobiera wszystkie noratki z ls :thnotes"
-    const getNotes: any = JSON.parse(localStorage.getItem('thenotes'));
+/*    const getNotes: any = JSON.parse(localStorage.getItem('thenotes'));
     if (getNotes !== null) {
       this.thenotes.push(...getNotes);
 
+
     } else {
+
       localStorage.setItem('thenotes', JSON.stringify([]));
       window.location.reload();
-    }
+    }*/
   }
   clearLS(): void {
     window.onbeforeunload = () => localStorage.clear();
@@ -64,8 +67,20 @@ export class NotesComponent implements OnDestroy, OnInit {
     document.location.reload(true);
   }
 
-  deleteNote(): void{
-    let divy = document.querySelectorAll('div');
+
+
+  deleteNote(parametr): void{
+
+    const thenotes = JSON.parse(localStorage.getItem('thenotes'));
+    const filtered = thenotes.filter(item => item.id !== parametr);
+    localStorage.setItem('thenotes', JSON.stringify(filtered));
+    JSON.parse(window.localStorage.getItem('thenotes'));
+    const filterednotes = JSON.parse(localStorage.getItem('thenotes'));
+    this.thenotes = filterednotes;
+
+/*    const filterednotes = JSON.parse(localStorage.getItem('thenotes'));
+    this.thenotes = filterednotes;*/
+/*    let divy = document.querySelectorAll('div');
 
     for(let i=0;i<divy.length;i++) {
       divy[i].addEventListener('click', function () {
@@ -73,7 +88,7 @@ export class NotesComponent implements OnDestroy, OnInit {
       });
     }
     window.onbeforeunload = () => localStorage.removeItem('id');
-    document.location.reload(true);
+    document.location.reload(true);*/
 
   }
 
@@ -90,15 +105,18 @@ export class NotesComponent implements OnDestroy, OnInit {
       description : this.descriptionModel ,
       color : this.colorModel
     };
-    const ncolor = document.getElementsByClassName('note') as HTMLCollectionOf<HTMLElement>;
+/*    const ncolor = document.getElementsByClassName('note') as HTMLCollectionOf<HTMLElement>;
 
     for (let i = 0; i < ncolor.length; i++) {
       ncolor[i].style.backgroundColor = this.colorModel;
 
-    }
+    }*/
     this.thenotes.push( newTheNotes );
     this.titleModel = this.descriptionModel = this.colorModel = '';
+
   }
+
+
   editNote(): void {
     const elements = document.getElementsByClassName('noteinput') as HTMLCollectionOf<HTMLElement>;
     for (const el of elements as any) {
@@ -125,6 +143,7 @@ export class NotesComponent implements OnDestroy, OnInit {
 
   ngOnDestroy(): void {
     localStorage.setItem('thenotes', JSON.stringify(this.thenotes));
+
   }
   ngOnInit(): void {
     window.onbeforeunload = () => this.ngOnDestroy();
