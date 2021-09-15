@@ -1,0 +1,47 @@
+<div class="top-bar">
+
+  <!-- <div class="back-button">
+    <button mat-raised-button color="primary" id="Create note" [routerLink]="['/notes']">Back</button>
+  </div>-->
+  <div class="addnoteform">
+    <mat-form-field appearance="fill">
+      <mat-label>Tytuł</mat-label>
+      <input matInput [(ngModel)]="titleModel">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Opis</mat-label>
+      <textarea matInput [(ngModel)]="descriptionModel"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Kolor notatki</mat-label>
+      <mat-select [(ngModel)]="colorModel">
+        <mat-option value="red">Czerwony</mat-option>
+        <mat-option value="green">Zielony</mat-option>
+        <mat-option value="blue">Niebieski</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="create-button">
+      <button mat-raised-button color="accent" (click)="createTheNotes()" id="ok">Dodaj</button>
+      <button class="buttoon"  mat-raised-button color="" (click)="clearLS()">Wyczyść LS</button>
+    </div>
+  </div>
+</div>
+
+<div class="first">
+  <div id="notes">
+    <div class="note" *ngFor="let i of thenotes" [id]="i.id" >
+      <mat-card-title disabled> #NoteID: {{ i.id}} </mat-card-title>
+      <mat-card-title disabled> {{ i.date}} </mat-card-title>
+      <label style="border: 1px solid #d8dbe1">Tytuł</label>
+        <mat-card-title class="noteinput"> {{ i.title }} </mat-card-title>
+      <label style="border: 1px solid #d8dbe1">Opis</label>
+        <mat-card class="noteinput"> {{ i.description }} </mat-card>
+      <button (click)="editNote()">Edytuj</button>
+      <button (click)="deleteNote()" [id]="i.id">Usuń</button>
+      </div>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

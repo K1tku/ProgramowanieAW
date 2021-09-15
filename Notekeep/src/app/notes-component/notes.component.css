@@ -1,0 +1,66 @@
+
+.center-input{
+
+  text-align: center;
+  align-items: center;
+  margin-top: 0.1%;
+}
+.back-button{
+  margin-bottom: 5px;
+  text-align: center;
+  align-items: center;
+}
+.create-button{
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+.addnoteform{
+  display:flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  margin-top: 2%;
+  margin-left: 5%;
+  gap: 20px;
+
+}
+/*CONTENT*/
+
+.first{
+
+}
+#notes{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  min-width: 100px;
+  max-width: 100%;
+  text-align: center;
+  vertical-align: center;
+  align-items: center;
+
+  border: 1px solid #d8dbe1;
+  border-radius: 20px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.note{
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  min-width: 150px;
+  max-width: 150px;
+  height: auto;
+  border: 1px solid #d8dbe1;
+  background-color: white;
+
+
+}
+.notes-note {
+  min-width: 120px;
+  margin:10px;
+  text-align: center;
+;
+}

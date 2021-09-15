@@ -11,20 +11,30 @@
 
 
     <div>
-        <div default-value="A">
-            <audio src="sounds/hihat.wav" controls data-sound="hihat"></audio>
-        </div>
+
         <div class="kanal-button">
-            <audio src="sounds/clap.wav" controls data-sound="clap"></audio>
-            <audio src="sounds/boom.wav" controls data-sound="boom"></audio>
-            <audio src="sounds/kick.wav" controls data-sound="kick"></audio>
-            <audio src="sounds/openhat.wav" controls data-sound="openhat"></audio>
-            <audio src="sounds/ride.wav" controls data-sound="ride"></audio>
-            <audio src="sounds/snare.wav" controls data-sound="snare"></audio>
-            <audio src="sounds/tink.wav" controls data-sound="tink"></audio>
-            <audio src="sounds/tom.wav" controls data-sound="tom"></audio>
+            <img src="icons/q.png" height="35px">
+            <audio hidden  src="sounds/hihat.wav" controls data-sound="hihat"></audio>
+            <br/><img src="icons/w.png" height="35px">
+            <audio hidden src="sounds/clap.wav" controls data-sound="clap"></audio>
+            <br/><img src="icons/e.png" height="35px">
+            <audio hidden src="sounds/boom.wav" controls data-sound="boom"></audio>
+            <br/><img src="icons/r.png" height="35px">
+            <audio hidden src="sounds/kick.wav" controls data-sound="kick"></audio>
+            <br/><img src="icons/t.png" height="35px">
+            <audio hidden src="sounds/openhat.wav" controls data-sound="openhat"></audio>
+            <br/><img src="icons/y.png" height="35px">
+            <audio hidden src="sounds/ride.wav" controls data-sound="ride"></audio>
+            <br/><img src="icons/u.png" height="35px">
+            <audio hidden src="sounds/snare.wav" controls data-sound="snare"></audio>
+            <br/><img src="icons/i.png" height="35px">
+            <audio hidden src="sounds/tink.wav" controls data-sound="tink"></audio>
+            <br/><img src="icons/o.png" height="35px">
+            <audio hidden src="sounds/tom.wav" controls data-sound="tom"></audio>
         </div>
-    </div>
+
+
+
 
     <div class="kanaly">
         <div class="kanal">
@@ -32,6 +42,7 @@
             <button id="stopKanal1" onclick="stopRecording(1)">Stop recording Channel 1</button>
             <button id="playKanal1" onclick="playRecording(1)">Play Channel 1</button>
         </div>
+
         <div class="kanal">
             <button id="Channel2" onclick="startRecording(event,2)">Start recording Channel 2</button>
             <button id="stopChannel2" onclick="stopRecording(2)">Stop recording Channel 2</button>
@@ -47,6 +58,7 @@
             <button id="stopKanal4" onclick="stopRecording(4)">Stop recording Channel 4</button>
             <button id="playKanal4" onclick="playRecording(4)">Play Channel 4</button>
         </div>
+    </div>
     </div>
 </main>
 

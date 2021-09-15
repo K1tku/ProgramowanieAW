@@ -2,6 +2,7 @@
 .center-input{
 text-align: center;
   margin-top: 50px;
+
 }
 .center-button{
   margin-bottom: 1%;
@@ -13,27 +14,28 @@ text-align: center;
   margin-top: 100px;
   text-align: center;
   vertical-align: center;
-  width:250px;
-  background-color: red;
-    justify-content: space-around;
+  width:100%;
+  background-color: lightskyblue;
+  justify-content: space-around;
 
+  display: flex;
 }
 
 .city{
   padding:20px;
   margin: 10px;
   border: 1px solid #d8dbe1;
-  height: 200px;
   background-color: white;
+
+
 
 
 }
 .cities-city {
   min-width: 120px;
  margin:10px;
+  position: center;
 
-
-;
 }
 
 

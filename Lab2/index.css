@@ -18,6 +18,16 @@ main{
 
 .kanaly{
     padding: 50px;
+    float: right;
+margin-top: -300px;
+
+}
+
+.kanal-button{
+
+    width: 420px;
+    display: block;
+    height: 100%;
 
 }
 
@@ -28,14 +38,5 @@ main{
     align-items: center;
     justify-content: center;
     gap: 20px;
-}
-
-.kanal-button{
-
-    width: 420px;
-    display: block;
-    height: 600px;
-
-
 
 }

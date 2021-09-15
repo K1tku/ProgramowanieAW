@@ -1,0 +1,34 @@
+<div class="top-bar">
+  <label class="webtitle">Notekeep</label>
+  <div class="back-button">
+    <button mat-raised-button color="warn" id="Back" [routerLink]="['/notes']">Back</button>
+  </div>
+
+</div>
+
+
+<div class="addnoteform">
+  <mat-form-field appearance="fill">
+    <mat-label>Tytuł</mat-label>
+    <input matInput [(ngModel)]="titleModel">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Opis</mat-label>
+    <textarea matInput [(ngModel)]="descriptionModel"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Kolor notatki</mat-label>
+    <mat-select [(ngModel)]="colorModel">
+      <mat-option value="red">Czerwony</mat-option>
+      <mat-option value="green">Zielony</mat-option>
+      <mat-option value="blue">Niebieski</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="create-button">
+    <button mat-raised-button color="primary" (click)="createTheNotes()" id="ok">Dodaj</button>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

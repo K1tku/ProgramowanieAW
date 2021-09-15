@@ -7,7 +7,7 @@ var Lab1 = /** @class */ (function () {
     Lab1.prototype.startApp = function () {
         var _this = this;
         this.liczbyWprowadzone = document.querySelector('#numberofinputs');
-        this.liczbyWprowadzone.addEventListener("zmiany", function () {
+        this.liczbyWprowadzone.addEventListener("change", function () {
             _this.renderInput();
         });
         this.getInputs();
@@ -17,7 +17,7 @@ var Lab1 = /** @class */ (function () {
         this.liczbyWprowadzone = document.querySelector('#numberofinputs');
         var value = this.liczbyWprowadzone.value;
         var inputContainer = document.getElementById("inputs-container");
-        var removeButton = document.getElementById('usunprzycisk');
+        var removeButton = document.getElementById('remove-button');
         removeButton.hidden = false;
         removeButton.addEventListener('click', function () {
             removeButton.disabled = true;

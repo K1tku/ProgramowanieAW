@@ -20,15 +20,18 @@ var kanal4 = [];
 var kanal4nagrywanie = false;
 var kanal4nagrywanieStart;
 appStart();
+//Główna funkcja aplikacji
 function appStart() {
     Kanal1();
     getSounds();
 }
+//funkcja
 function Kanal1() {
     document.body.addEventListener('keypress', onKeyDown);
     var btnKanal1Play = document.querySelector('#Kanal1');
     btnKanal1Play.addEventListener('click', onPlayKanal1);
 }
+//funkcja gdzie jest odtwarzne co zostalo nagrane poprzed obliczanie czasu
 function onPlayKanal1() {
     kanal1.forEach(function (keyPressedEvent) {
         setTimeout(function () { return playSound(keyPressedEvent.key); }, keyPressedEvent.timestamp);
@@ -48,6 +51,7 @@ function play() {
         playSound(ch1);
     }
 }
+//pobiera dzwieki z html
 function getSounds() {
     hihatSound = document.querySelector('[data-sound="hihat"]');
     clapSound = document.querySelector('[data-sound="clap"]');
@@ -59,6 +63,7 @@ function getSounds() {
     tinkSound = document.querySelector('[data-sound="tink"]');
     tomSound = document.querySelector('[data-sound="tom"]');
 }
+//funckja odtwarzajaca dany kanal
 function onKeyDown(ev) {
     console.log(ev);
     var key = ev.key;

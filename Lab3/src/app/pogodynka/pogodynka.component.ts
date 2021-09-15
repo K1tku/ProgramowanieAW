@@ -26,7 +26,7 @@ export class PogodynkaComponent implements OnDestroy, OnInit {
         this.miasta.push(new PogodaDlaMiast( this.nazwaMiasta,response));
       });
   }
- //[aktywuje sie gdy przechodzi sie miedzy Route'mi] Zapisuje do localstorage
+ //[aktywuje sie gdy przechodzi sie miedzy Route'mi Zapisuje do localstorage
   ngOnDestroy(): void {
     localStorage.setItem('miasta', JSON.stringify(this.miasta));
   }
@@ -34,5 +34,10 @@ export class PogodynkaComponent implements OnDestroy, OnInit {
   ngOnInit(): void {
     // zanim dojdzie do przeladowania strony, wykona ngondestroy
     window.onbeforeunload = () => this.ngOnDestroy();
+  }
+  wyczyscLS(): void {
+    window.onbeforeunload = () => localStorage.clear();
+    window.onbeforeunload = () => localStorage.removeItem('miasta');
+    document.location.reload(true)
   }
 }

@@ -17,7 +17,7 @@ class Lab1 {
 
     startApp() {
         this.liczbyWprowadzone = document.querySelector('#numberofinputs');
-        this.liczbyWprowadzone.addEventListener("zmiany", () => {
+        this.liczbyWprowadzone.addEventListener("change", () => {
             this.renderInput()
         });
         this.getInputs();
@@ -27,7 +27,7 @@ class Lab1 {
         this.liczbyWprowadzone = document.querySelector('#numberofinputs');
         const value = this.liczbyWprowadzone.value;
         const inputContainer = document.getElementById("inputs-container");
-        const removeButton = document.getElementById('usunprzycisk') as HTMLButtonElement;
+        const removeButton = document.getElementById('remove-button') as HTMLButtonElement;
         removeButton.hidden = false;
         removeButton.addEventListener('click', () =>{
             removeButton.disabled = true;

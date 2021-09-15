@@ -27,18 +27,20 @@ let kanal4nagrywanieStart: number;
 
 appStart();
 
+//Główna funkcja aplikacji
 function appStart(): void {
     Kanal1();
     getSounds();
 }
 
-
+//funkcja
 function Kanal1(): void{
     document.body.addEventListener('keypress', onKeyDown);
     const btnKanal1Play = document.querySelector('#Kanal1')
     btnKanal1Play.addEventListener('click', onPlayKanal1)
 }
 
+//funkcja gdzie jest odtwarzne co zostalo nagrane poprzed obliczanie czasu
 function onPlayKanal1(): void{
     kanal1.forEach(keyPressedEvent => {
         setTimeout(() => playSound(keyPressedEvent.key), keyPressedEvent.timestamp)
@@ -62,7 +64,7 @@ function play(): void {
         playSound(ch1);
     }
 }
-
+//pobiera dzwieki z html
 function getSounds(): void {
     hihatSound = document.querySelector('[data-sound="hihat"]')
     clapSound = document.querySelector('[data-sound="clap"]')
@@ -75,6 +77,7 @@ function getSounds(): void {
     tomSound = document.querySelector('[data-sound="tom"]')
 }
 
+//funckja odtwarzajaca dany kanal
 function onKeyDown(ev: KeyboardEvent): void {
     console.log(ev);
     const key = ev.key;
