@@ -35,10 +35,11 @@
       <mat-card-title disabled> #NoteID: {{ i.id}} </mat-card-title>
       <mat-card-title disabled> {{ i.date}} </mat-card-title>
       <label style="border: 1px solid #d8dbe1">Tytuł</label>
-        <mat-card-title class="noteinput"> {{ i.title }} </mat-card-title>
+        <mat-card-title class="noteinput" [id]="'title'+i.id"> {{ i.title }} </mat-card-title>
       <label style="border: 1px solid #d8dbe1">Opis</label>
-        <mat-card class="noteinput"> {{ i.description }} </mat-card>
-      <button (click)="editNote(i.id, i.color)">Edytuj</button>
+        <mat-card  class="noteinput" [id]="'description'+i.id"> {{ i.description }} </mat-card>
+      <button hidden (click)="saveNote(i.id,i.title,i.description,i.color)" id="saveButton">Save</button>
+      <button (click)="editNote(i.id)" id="editButton">Edytuj</button>
       <button (click)="deleteNote(i.id)" >Usuń</button>
 
       </div>

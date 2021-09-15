@@ -116,15 +116,48 @@ export class NotesComponent implements OnDestroy, OnInit {
 
     this.thenotes.push( newTheNotes );
     this.titleModel = this.descriptionModel = this.colorModel = '';
-/*    const ncolor = document.getElementById(theId) as HTMLElement;
-    ncolor[theId].style.backgroundColor = this.colorModel;*/
+
   }
 
 
-  editNote(id, color): void {
+  editNote(id): void {
+
+    const saveButton = document.getElementById('saveButton');
+    const editButton = document.getElementById('editButton');
+    editButton.hidden = true;
+    saveButton.hidden = false;
+
+    var theTitle = document.getElementById('title'+id);
+    theTitle.disabled = 'false';
+
+    const theDescription = document.getElementById('description'+id);
+  theDescription.disabled = 'false'
+    }
+
+  saveNote(id,etitle,edescription,ecolor):void{
+
+    var theTitle = document.getElementById('title'+id);
+    theTitle.disabled = 'true';
+
+    const theDescription = document.getElementById('description'+id);
+    theDescription.disabled = 'true'
+
+    const editButton = document.getElementById('editButton')
+    editButton.hidden = false;
+    const saveButton = document.getElementById('saveButton')
+    saveButton.hidden = true;
+
+    const selectedNote = document.getElementById(id);
+    selectedNote[id].title = etitle
+    selectedNote[id].description = edescription
+    selectedNote[id].style.backgroundColor = ecolor;
 
 
-    localStorage.setItem(id, color);
+}
+
+
+        /*const selectedNote = document.getElementById(theId) as HTMLElement;
+        ncolor[theId].style.backgroundColor = this.colorModel;*/
     /*   const elements = document.getElementsByClassName('noteinput') as HTMLCollectionOf<HTMLElement>;
        for (const el of elements as any) {
          if (el.disabled === true) {
@@ -141,9 +174,6 @@ export class NotesComponent implements OnDestroy, OnInit {
            }
          }
        }*/
-  }
-
-
 
 
 
