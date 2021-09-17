@@ -1,20 +1,17 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import firebase from "firebase/compat";
 import {firebaseConfig} from "./config";
-import {addNoteFB} from "./Firebase";
-import {deleteNoteFB} from "./Firebase";
-import {updateNoteFB} from "./Firebase";
+
 
 
 export class TheNotes {
   id: any;
-  date: any;
-  title: string ;
-  description: string ;
-  color: string;
+  data: any;
+  tytul: string ;
+  opis: string ;
+  kolor: string;
 
 }
-
 
 
 @Component({
@@ -26,15 +23,15 @@ export class TheNotes {
 
 
 export class NotesComponent implements OnDestroy, OnInit {
-  titleModel: string;
-  descriptionModel: string;
-  colorModel: string;
+  tytulModel: string;
+  opisModel: string;
+  kolorModel: string;
   thenotes: TheNotes[];
 
   constructor() {
-    this.titleModel = 'TestTitle';
-    this.descriptionModel = 'TestDesc';
-    this.colorModel = 'Red';
+    this.tytulModel = 'TestowyTytul';
+    this.opisModel = 'TestowyOpis';
+    this.kolorModel = 'Czerwony';
 
 
     const today = new Date();
@@ -44,16 +41,18 @@ export class NotesComponent implements OnDestroy, OnInit {
 
     const defaultTheNotes: TheNotes = {
       id: 1,
-      date: dateTime,
-      title: 'Testowy Tytuł',
-      description: 'Testowy Opis',
-      color: 'Czerwony'
+      data: dateTime,
+      tytul: 'Testowy Tytuł',
+      opis: 'Testowy Opis',
+      kolor: 'Czerwony'
     };
     this.thenotes = [ defaultTheNotes ];
     const ssss = JSON.parse(localStorage.getItem('thenotes'));
     this.thenotes = ssss;
+
 //pobiera wszystkie noratki z ls :thnotes"
-/*        const getNotes: any = JSON.parse(localStorage.getItem('thenotes'));
+
+      /*  const getNotes: any = JSON.parse(localStorage.getItem('thenotes'));
         if (getNotes !== null) {
           this.thenotes.push(...getNotes);
 
@@ -77,6 +76,24 @@ export class NotesComponent implements OnDestroy, OnInit {
     this.thenotes = filterednotes;
 
   }
+  /*firebaseStor(){
+
+    const firebaseApp = firebase.initializeApp(firebaseConfig);
+    const db = firebaseApp.firestore();
+
+    const note = {
+      title: "test",
+      content: "test"
+    };
+
+    addNoteFB(note);
+
+    async function addNoteFB(note: any) {
+
+      const res = await db.collection('notes').add(note)
+    }};
+*/
+
 
 
 
@@ -89,17 +106,15 @@ export class NotesComponent implements OnDestroy, OnInit {
     const dateTime = date+' '+time;
     const newTheNotes: TheNotes = {
       id: theId,
-      date: dateTime,
-      title: this.titleModel ,
-      description : this.descriptionModel ,
-      color : this.colorModel
+      data: dateTime,
+      tytul: this.tytulModel ,
+      opis : this.opisModel ,
+      kolor : this.kolorModel
     };
 
     this.thenotes.push( newTheNotes );
-    this.titleModel = this.descriptionModel = this.colorModel = '';
+    this.tytulModel = this.opisModel = this.kolorModel = '';
     document.location.reload(true);
-
-
 
   }
 
@@ -133,12 +148,13 @@ export class NotesComponent implements OnDestroy, OnInit {
     const saveButton = document.getElementById('saveButton'+id)
     saveButton.setAttribute("hidden","");
 
-    const notesfromlc = JSON.parse(localStorage.thenotes);
+    var notesfromlc = JSON.parse(localStorage.thenotes);
     const selectedNote = document.getElementById(id);
     selectedNote[id].title = etitle
-    for (var i = 0; i < notesfromlc.length; i++) {
-      if(id === notesfromlc[i].title){
-        notesfromlc[i].title = etitle;
+    var notes = JSON.parse(localStorage.thenotes);
+    for (var i = 0; i < notes.length; i++) {
+      if(id === notes[i].title){
+        notes[i].title = etitle;
         break;  //exit loop since you found the person
       }
     }
@@ -156,33 +172,8 @@ export class NotesComponent implements OnDestroy, OnInit {
     JSON.parse(localStorage.getItem('thenotes'));
     document.location.reload(true);*/
 }
-  firebaseStoryge(): void {
 
-    const firebaseApp = firebase.initializeApp(firebaseConfig);
-    const db = firebaseApp.firestore();
 
-    const note = {
-      title: "test",
-      content:"test"
-    };
-
-    addNoteFB(note)
-
-    async function addNoteFB(newTheNotes: any) {
-
-      const res = await db.collection('notes').add(newTheNotes)
-    }
-
-    /*async function deleteNoteFB(id: string) {
-
-      const res = await db.collection('notes').doc(id).delete()
-    }
-
-    async function updateNoteFB(id: string, note: any) {
-
-      const res = await db.collection('notes').doc(id).update(note)
-    }*/
-    }
 
 
 

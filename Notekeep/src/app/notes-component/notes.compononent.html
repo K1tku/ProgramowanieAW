@@ -6,17 +6,17 @@
   <div class="addnoteform">
     <mat-form-field appearance="fill">
       <mat-label>Tytuł</mat-label>
-      <input matInput [(ngModel)]="titleModel">
+      <input matInput [(ngModel)]="tytulModel">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Opis</mat-label>
-      <textarea matInput [(ngModel)]="descriptionModel"></textarea>
+      <textarea matInput [(ngModel)]="opisModel"></textarea>
     </mat-form-field>-
 
     <mat-form-field appearance="fill">
       <mat-label>Kolor notatki</mat-label>
-      <mat-select [(ngModel)]="colorModel">
+      <mat-select [(ngModel)]="kolorModel">
         <mat-option value="indianred">Czerwony</mat-option>
         <mat-option value="mediumseagreen">Zielony</mat-option>
         <mat-option value="cornflowerblue">Niebieski</mat-option>
@@ -25,27 +25,27 @@
     <div class="create-button">
       <button mat-raised-button color="accent" (click)="createTheNotes()"  id="ok">Dodaj</button>
  <!--     <button class="buttoon"  mat-raised-button color="" (click)="clearLS()">Wyczyść LS</button>-->
-      <button class="buttoon"  mat-raised-button color="primary" (click)="firebaseStoryge()">Dodaj do FB</button>
+      <button class="button"  mat-raised-button color="primary" >Dodaj do FB</button>
     </div>
   </div>
 </div>
 
 <div class="first">
   <div id="notes">
-    <div class="note" *ngFor="let i of thenotes" [id]="i.id" [ngStyle]="{backgroundColor:i.color}">
+    <div class="note" *ngFor="let i of thenotes" [id]="i.id" [ngStyle]="{backgroundColor:i.kolor}">
       <mat-card-title disabled> #NoteID: {{ i.id}} </mat-card-title>
-      <mat-card-title disabled> {{ i.date}} </mat-card-title>
+      <mat-card-title disabled> {{ i.data}} </mat-card-title>
 
        <!-- <mat-card-title disabled="true"  class="noteinput" [id]="'title'+i.id"> {{ i.title }} </mat-card-title>-->
 
       <mat-form-field appearance="fill">
         <mat-label>Tytuł</mat-label>
-        <input matInput placeholder="...a" disabled="true"  class="noteinput" [id]="'title'+i.id" value="{{ i.title }}">
+        <input matInput placeholder="...a" disabled="true"  class="noteinput" [id]="'title'+i.id" value="{{ i.tytul }}">
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Opis</mat-label>
-        <input matInput placeholder="...a" disabled="true"  class="noteinput" [id]="'description'+i.id" value="{{ i.description }}">
+        <input matInput placeholder="...a" disabled="true"  class="noteinput" [id]="'description'+i.id" value="{{ i.opis }}">
       </mat-form-field>
 
       <!--<mat-card-title  disabled="true" id="theTitle">{{ i.description }}</mat-card-title>-->
@@ -57,7 +57,7 @@
       </mat-form-field>-->
 
 
-      <button hidden (click)="saveNote(i.id,i.title,i.description,i.color)" [id]="'saveButton'+i.id">Save</button>
+      <button hidden (click)="saveNote(i.id,i.tytul,i.opis,i.kolor)" [id]="'saveButton'+i.id">Save</button>
       <button (click)="editNote(i.id)" [id]="'editButton'+i.id">Edytuj</button>
       <button (click)="deleteNote(i.id)" >Usuń</button>
 
