@@ -1,4 +1,4 @@
-<div class="top-bar">
+<div class="top-bar" xmlns="http://www.w3.org/1999/html">
 
   <!-- <div class="back-button">
     <button mat-raised-button color="primary" id="Create note" [routerLink]="['/notes']">Back</button>
@@ -17,14 +17,15 @@
     <mat-form-field appearance="fill">
       <mat-label>Kolor notatki</mat-label>
       <mat-select [(ngModel)]="colorModel">
-        <mat-option value="red">Czerwony</mat-option>
-        <mat-option value="green">Zielony</mat-option>
-        <mat-option value="blue">Niebieski</mat-option>
+        <mat-option value="indianred">Czerwony</mat-option>
+        <mat-option value="mediumseagreen">Zielony</mat-option>
+        <mat-option value="cornflowerblue">Niebieski</mat-option>
       </mat-select>
     </mat-form-field>
     <div class="create-button">
       <button mat-raised-button color="accent" (click)="createTheNotes()"  id="ok">Dodaj</button>
  <!--     <button class="buttoon"  mat-raised-button color="" (click)="clearLS()">Wyczyść LS</button>-->
+      <button class="buttoon"  mat-raised-button color="primary" (click)="firebaseStoryge()">Dodaj do FB</button>
     </div>
   </div>
 </div>
@@ -34,12 +35,30 @@
     <div class="note" *ngFor="let i of thenotes" [id]="i.id" [ngStyle]="{backgroundColor:i.color}">
       <mat-card-title disabled> #NoteID: {{ i.id}} </mat-card-title>
       <mat-card-title disabled> {{ i.date}} </mat-card-title>
-      <label style="border: 1px solid #d8dbe1">Tytuł</label>
-        <mat-card-title class="noteinput" [id]="'title'+i.id"> {{ i.title }} </mat-card-title>
-      <label style="border: 1px solid #d8dbe1">Opis</label>
-        <mat-card  class="noteinput" [id]="'description'+i.id"> {{ i.description }} </mat-card>
-      <button hidden (click)="saveNote(i.id,i.title,i.description,i.color)" id="saveButton">Save</button>
-      <button (click)="editNote(i.id)" id="editButton">Edytuj</button>
+
+       <!-- <mat-card-title disabled="true"  class="noteinput" [id]="'title'+i.id"> {{ i.title }} </mat-card-title>-->
+
+      <mat-form-field appearance="fill">
+        <mat-label>Tytuł</mat-label>
+        <input matInput placeholder="...a" disabled="true"  class="noteinput" [id]="'title'+i.id" value="{{ i.title }}">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Opis</mat-label>
+        <input matInput placeholder="...a" disabled="true"  class="noteinput" [id]="'description'+i.id" value="{{ i.description }}">
+      </mat-form-field>
+
+      <!--<mat-card-title  disabled="true" id="theTitle">{{ i.description }}</mat-card-title>-->
+
+<!--      <mat-form-field  class="noteinput" [id]="'description'+i.id">
+        <mat-label></mat-label>
+        <input id="theTitle" [disabled]="isDisabled" text=" {{ i.description }}">
+
+      </mat-form-field>-->
+
+
+      <button hidden (click)="saveNote(i.id,i.title,i.description,i.color)" [id]="'saveButton'+i.id">Save</button>
+      <button (click)="editNote(i.id)" [id]="'editButton'+i.id">Edytuj</button>
       <button (click)="deleteNote(i.id)" >Usuń</button>
 
       </div>

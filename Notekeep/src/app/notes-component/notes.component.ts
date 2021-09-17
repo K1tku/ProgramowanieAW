@@ -16,6 +16,7 @@ export class TheNotes {
 }
 
 
+
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.compononent.html',
@@ -29,7 +30,6 @@ export class NotesComponent implements OnDestroy, OnInit {
   descriptionModel: string;
   colorModel: string;
   thenotes: TheNotes[];
-
 
   constructor() {
     this.titleModel = 'TestTitle';
@@ -53,7 +53,7 @@ export class NotesComponent implements OnDestroy, OnInit {
     const ssss = JSON.parse(localStorage.getItem('thenotes'));
     this.thenotes = ssss;
 //pobiera wszystkie noratki z ls :thnotes"
-    /*    const getNotes: any = JSON.parse(localStorage.getItem('thenotes'));
+/*        const getNotes: any = JSON.parse(localStorage.getItem('thenotes'));
         if (getNotes !== null) {
           this.thenotes.push(...getNotes);
 
@@ -66,13 +66,6 @@ export class NotesComponent implements OnDestroy, OnInit {
   }
 
 
-/*  clearLS(): void {
-    window.onbeforeunload = () => localStorage.clear();
-    window.onbeforeunload = () => localStorage.removeItem('thenotes');
-    document.location.reload(true);
-  }*/
-
-
 
   deleteNote(parametr): void{
 
@@ -82,18 +75,6 @@ export class NotesComponent implements OnDestroy, OnInit {
     JSON.parse(window.localStorage.getItem('thenotes'));
     const filterednotes = JSON.parse(localStorage.getItem('thenotes'));
     this.thenotes = filterednotes;
-
-    /*    const filterednotes = JSON.parse(localStorage.getItem('thenotes'));
-        this.thenotes = filterednotes;*/
-    /*    let divy = document.querySelectorAll('div');
-
-        for(let i=0;i<divy.length;i++) {
-          divy[i].addEventListener('click', function () {
-            this.id;
-          });
-        }
-        window.onbeforeunload = () => localStorage.removeItem('id');
-        document.location.reload(true);*/
 
   }
 
@@ -116,64 +97,92 @@ export class NotesComponent implements OnDestroy, OnInit {
 
     this.thenotes.push( newTheNotes );
     this.titleModel = this.descriptionModel = this.colorModel = '';
+    document.location.reload(true);
+
+
 
   }
 
 
   editNote(id): void {
 
-    const saveButton = document.getElementById('saveButton');
-    const editButton = document.getElementById('editButton');
-    editButton.hidden = true;
-    saveButton.hidden = false;
+    const editButton = document.getElementById('editButton'+id)
+    editButton.setAttribute("hidden","");
+    const saveButton = document.getElementById('saveButton'+id)
+    saveButton.removeAttribute("hidden");
 
-    var theTitle = document.getElementById('title'+id);
-    theTitle.disabled = 'false';
+    var theTitle = document.getElementById('title'+id) as HTMLInputElement;
+    theTitle.disabled = false;
 
-    const theDescription = document.getElementById('description'+id);
-  theDescription.disabled = 'false'
+    const theDescription = document.getElementById('description'+id) as HTMLInputElement;
+    theDescription.disabled = false;
+
     }
 
   saveNote(id,etitle,edescription,ecolor):void{
 
-    var theTitle = document.getElementById('title'+id);
-    theTitle.disabled = 'true';
+    var theTitle = document.getElementById('title'+id) as HTMLInputElement;
 
-    const theDescription = document.getElementById('description'+id);
-    theDescription.disabled = 'true'
+    theTitle.disabled = true;
 
-    const editButton = document.getElementById('editButton')
-    editButton.hidden = false;
-    const saveButton = document.getElementById('saveButton')
-    saveButton.hidden = true;
+    const theDescription = document.getElementById('description'+id) as HTMLInputElement;
+    theDescription.disabled = true;
 
+    const editButton = document.getElementById('editButton'+id)
+    editButton.removeAttribute("hidden");
+    const saveButton = document.getElementById('saveButton'+id)
+    saveButton.setAttribute("hidden","");
+
+    const notesfromlc = JSON.parse(localStorage.thenotes);
     const selectedNote = document.getElementById(id);
     selectedNote[id].title = etitle
+    for (var i = 0; i < notesfromlc.length; i++) {
+      if(id === notesfromlc[i].title){
+        notesfromlc[i].title = etitle;
+        break;  //exit loop since you found the person
+      }
+    }
+    localStorage.setItem("thenotes", JSON.stringify(notesfromlc));  //put the object back
+
     selectedNote[id].description = edescription
+
     selectedNote[id].style.backgroundColor = ecolor;
 
 
+
+
+/*    const edited = this.thenotes;
+    localStorage.setItem('thenotes', JSON.stringify(edited));
+    JSON.parse(localStorage.getItem('thenotes'));
+    document.location.reload(true);*/
 }
+  firebaseStoryge(): void {
 
+    const firebaseApp = firebase.initializeApp(firebaseConfig);
+    const db = firebaseApp.firestore();
 
-        /*const selectedNote = document.getElementById(theId) as HTMLElement;
-        ncolor[theId].style.backgroundColor = this.colorModel;*/
-    /*   const elements = document.getElementsByClassName('noteinput') as HTMLCollectionOf<HTMLElement>;
-       for (const el of elements as any) {
-         if (el.disabled === true) {
-           el.disabled = false;
+    const note = {
+      title: "test",
+      content:"test"
+    };
 
-           for (let i = 0; i < elements.length; i++) {
-             elements[i].style.border = '';
-           }
-         } else {
-           el.disabled = true;
+    addNoteFB(note)
 
-           for (let i = 0; i < elements.length; i++) {
-             elements[i].style.border = 'none';
-           }
-         }
-       }*/
+    async function addNoteFB(newTheNotes: any) {
+
+      const res = await db.collection('notes').add(newTheNotes)
+    }
+
+    /*async function deleteNoteFB(id: string) {
+
+      const res = await db.collection('notes').doc(id).delete()
+    }
+
+    async function updateNoteFB(id: string, note: any) {
+
+      const res = await db.collection('notes').doc(id).update(note)
+    }*/
+    }
 
 
 

@@ -7,12 +7,11 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 const db = firebaseApp.firestore();
 
 
-
   export async function
 
-  addNoteFB(newTheNotes: any) {
+  addNoteFB(note: any) {
 
-    const res = await db.collection('notes').add(newTheNotes)
+    const res = await db.collection('notes').add(note)
   }
 
 export async function
